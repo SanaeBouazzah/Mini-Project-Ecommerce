@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{config('app.name')}} | @yield('title')</title>
-</head>
-<body>
-  <ul>
-    @foreach ($products as $product)
-    <li>{{$product->name}}</li>
-    <li>{{$product->description}}</li>
-    <li>{{$product->quantity}}</li>
-    <li>{{$product->image}}</li>
-    <li>{{$product->price}}</li>
- @endforeach
-  </ul>
-</body>
-</html>
+@extends('layout')
+@section('title', 'Products')
+@section('content')
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Quantity</th>
+    <th>Image</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+      @forelse ($products as $product)
+      <td>{{$product->name}}</td>
+      <td>{{$product->description}}</td>
+      <td>{{$product->quantity}}</td>
+      <td>{{$product->image}}</td>
+      <td>{{$product->price}}</td>
+    @empty
+        <tr>
+          <td colspan="6"><h2>No Products</h2></td>
+        </tr>
+    @endforelse
+  </tr>
+</table>
+@endsection
